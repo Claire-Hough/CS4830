@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Archived Assignments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refreshPage($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ng-container *ngFor="let item of assignments">
+      <ion-item-sliding *ngIf="item.archived === 'Yes' ">
+        <ion-item lines="inset" (click)="ngOnInit()" [routerLink]="['/details', item.id]">
+          <ion-label>
+            {{item.name}}
+            <p>{{item.class}}</p>
+          </ion-label>
+          <ion-note slot="end" color="primary">
+            {{item.dueDate | date: 'short' }}
+          </ion-note>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="remove(item)" color="danger">
+            Delete Permanently
+            <ion-icon name="close" slot="end"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ng-container>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button routerLink="/home" routerDirection="forward">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

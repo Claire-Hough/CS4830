@@ -1,0 +1,63 @@
+ iframe {
+   width: 100%;
+   height: 400px;
+   border-radius: 8px;
+ }
+
+ ion-content {
+   --ion-background-color: lightgrey;
+ }
+
+ ion-icon {
+   float: right;
+   min-height: 40px;
+   min-width: 40px;
+   margin-right: 2%;
+   cursor: pointer;
+ }
+
+ .items {
+   width: 100%;
+   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+ }
+
+ span {
+   margin-top: 1vh;
+   text-align: center;
+   margin-bottom: 1vh;
+ }
+
+ .room {
+   cursor: pointer;
+   
+   
+ }
+
+ .title{
+  height: 15vh;
+  text-overflow: ellipsis;
+ }
+
+ ion-card {
+   background-color: white;
+   padding-bottom: 4%;
+ }
+
+ ion-button {
+   margin: 1vh 1vw 1vh 1vw;
+ }
+
+ ion-title {
+   margin-top: 1%;
+ }
+
+ ion-card-content{
+  height: 8vh;
+ }
+
+ ion-item {
+   --ion-background-color: white;
+ }

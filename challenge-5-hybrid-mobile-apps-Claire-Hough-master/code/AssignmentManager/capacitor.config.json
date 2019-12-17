@@ -1,0 +1,8 @@
+{
+  "appId": "com.clairehough.assignmentmanager",
+  "appName": "AssignmentManager",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

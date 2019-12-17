@@ -1,0 +1,28 @@
+ion-icon {
+  float: right;
+  min-height: 40px;
+  min-width: 40px;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+ion-title {
+  margin-top: 1%;
+}
+
+ion-item, div {
+  margin: 2vh 2vw 2vh 2vw;
+  padding: 1vh 1vw 1vh 1vw;
+  --ion-background-color: white;
+}
+
+ion-content {
+  --ion-background-color: lightgrey;
+}
+
+ion-card, form {
+  background-color: white;
+}
+.error{
+  color: red;
+}

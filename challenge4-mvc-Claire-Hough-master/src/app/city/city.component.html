@@ -1,0 +1,13 @@
+<h1>city component</h1>
+
+<div>Total Number of Reviewed Restaurants: {{getTotalNumberofReviewedRestaurants()}}</div>
+
+<li *ngFor="let city of cities">
+    <a
+    [routerLink]="['/city',city.id, 'restaurant']">
+    <div>Name: {{city.name}}</div>
+    <div>Number of Reviewed Restaurants: {{reviewedRestaurantCount(city.id)}}</div>
+    </a>
+</li>
+<br>
+<a [routerLink]="['/addReview']"><div>Add Review</div></a>

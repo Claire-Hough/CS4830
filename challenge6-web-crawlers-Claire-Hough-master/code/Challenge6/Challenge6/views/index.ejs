@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cnhfg6 Web Scraper</title>
+        
+        <style>
+            body{
+                background-color: lightyellow;
+            }
+            .quoteDiv {
+                margin: auto;
+                padding: 10px;
+                border: 2px solid lightblue;
+                width: 80%;
+            }
+            h1 {
+                color: deeppink;
+            }
+            h5{
+                color: darkgray;
+            }
+            h4{
+                color: navy;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Challenge 6 Web Scraper</h1>
+
+        <div class="quoteDiv">
+            <h1>Important: Please Read</h1>
+            <h4>When using the buttons below, clicking them will cause the page to refresh indefinitely. Click the "X" above to stop trying to load the page, then click the Refresh button to manually refresh the page. This will then display the function that the button performed.</h4>
+            <h4>Please clear the database before running the scraper again! Running the scraper multiple times in a row adds the 100 quotes to the database over and over.</h4>
+            <h4>Scraping from this website: <a href= "http://quotes.toscrape.com/">http://quotes.toscrape.com/</a></h4>
+        </div>
+        <br>
+
+        <form method="POST" action="/scraper">
+            <button type="submit">Click to run scraper</button>
+        </form>
+        <br>
+        <form method="POST" action="/clear">
+            <button type="submit">Click to clear MongoDB</button>
+        </form>
+        <br>
+        <% quotes.forEach(function(quote){ %>
+            <div class="quoteDiv">
+                <h3><%= quote.text %></h3>
+                <h5>- <%= quote.author %></h5>
+            </div>
+            <br>
+        <%	}) %>
+    </body>
+</html>

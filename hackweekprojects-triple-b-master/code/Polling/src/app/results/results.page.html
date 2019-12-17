@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <a routerLink="/modal">
+      <ion-icon name="contact" color="tertiary"></ion-icon>
+    </a>
+    <ion-title>Poll Results</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="ready">
+  <ion-card>
+
+    <ion-item>
+      <h3>Completed Polls</h3>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let result of results; let i = index" size-sm="6" size-md="4" size-lg="4" size-xl="3">
+          <ion-card class="resultCard">
+            <div>
+
+              <canvas *ngIf="foundPolls[i]" baseChart [datasets]="[
+                { barPercentage: 0.65, data: [result.choice1], label: [foundPolls[i].choice1] },
+                { barPercentage: 0.65, data: [result.choice2], label: [foundPolls[i].choice2] }
+                ]" [labels]="[ foundPolls[i].question ]" [options]="barChartOptions" [plugins]="barChartPlugins"
+                [legend]="barChartLegend" [chartType]="barChartType">
+              </canvas>
+            </div>
+            <ion-card-header>
+              <ion-card-subtitle>Question asked:</ion-card-subtitle>
+              <ion-card-title *ngIf="foundPolls[i]">{{ foundPolls[i].question }} </ion-card-title>
+              <ion-card-title>Winner of the poll is: {{ winner[i] }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content *ngIf="foundPolls[i]">
+              {{ foundPolls[i].choice1 }} has {{ result.choice1 }} vote(s)<br>
+              {{ foundPolls[i].choice2 }} has {{ result.choice2 }} vote(s)
+            </ion-card-content>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+
+</ion-content>

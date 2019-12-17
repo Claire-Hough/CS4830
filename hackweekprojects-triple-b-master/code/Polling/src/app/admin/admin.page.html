@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <a routerLink="/modal">
+      <ion-icon name="contact" color="tertiary"></ion-icon>
+    </a>
+    <ion-title>Create a poll</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <div>
+      <ion-list lines="full">
+
+        <form [formGroup]="pollingForm">
+          <ion-item>
+            <ion-label position="floating">Video ID</ion-label>
+            <ion-icon name="help-circle" slot="end" (click)="helpVideoIdAlert()"></ion-icon>
+            <ion-input minlength="11" maxlength="11" formControlName="url" type="text" required></ion-input>
+          </ion-item>
+          <div class="error"
+            *ngIf="pollingForm.hasError('required', 'url') && (pollingForm.controls.url.dirty || pollingForm.controls.url.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Video ID is required.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('pattern', 'url') && (pollingForm.controls.url.dirty || pollingForm.controls.url.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Video ID must contain alphanumeric characters, dashes, and underscores only.
+          </div>
+          <div class="error"
+            *ngIf="(pollingForm.controls.url.hasError('maxLength', 'url') || pollingForm.controls.url.hasError('minLength', 'url')) && (pollingForm.controls.url.dirty || pollingForm.controls.url.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Video ID must be exactly 11 characters.
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Poll Question</ion-label>
+            <ion-icon name="help-circle" slot="end" (click)="helpQuestionAlert()"></ion-icon>
+            <ion-textarea rows="3" cols="20" formControlName="question" type="text" required></ion-textarea>
+          </ion-item>
+          <div class="error"
+            *ngIf="pollingForm.hasError('required', 'question') && (pollingForm.controls.question.dirty || pollingForm.controls.question.touched)">
+            <ion-icon name="alert"></ion-icon>
+            A question is required.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('pattern', 'question') && (pollingForm.controls.question.dirty || pollingForm.controls.question.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Your poll question can contain alphanumeric characters, apostrophes, dashes, and question marks only.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('maxLength', 'question') && (pollingForm.controls.question.dirty || pollingForm.controls.question.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Your question cannot be longer than 200 characters.
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Voting Choice 1</ion-label>
+            <ion-icon name="help-circle" slot="end" (click)="helpChoiceAlert()"></ion-icon>
+            <ion-input maxLength=20 formControlName="choice1" type="text" required></ion-input>
+          </ion-item>
+          <div class="error"
+            *ngIf="pollingForm.hasError('required', 'choice1') && (pollingForm.controls.choice1.dirty || pollingForm.controls.choice1.touched)">
+            <ion-icon name="alert"></ion-icon>
+            A choice is required.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('pattern', 'choice1') && (pollingForm.controls.choice1.dirty || pollingForm.controls.choice1.touched)">
+            <ion-icon name="alert"></ion-icon>
+            The choice can contain alphanumeric characters, apostrophes, and dashes only.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('maxLength', 'choice1') && (pollingForm.controls.choice1.dirty || pollingForm.controls.choice1.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Your choice cannot be longer than 20 characters.
+          </div>
+
+          <ion-item>
+            <ion-label position="floating">Voting Choice 2</ion-label>
+            <ion-input maxLength=20 formControlName="choice2" type="text" required></ion-input>
+          </ion-item>
+          <div class="error"
+            *ngIf="pollingForm.hasError('required', 'choice2') && (pollingForm.controls.choice2.dirty || pollingForm.controls.choice2.touched)">
+            <ion-icon name="alert"></ion-icon>
+            A choice is required.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('pattern', 'choice2') && (pollingForm.controls.choice2.dirty || pollingForm.controls.choice2.touched)">
+            <ion-icon name="alert"></ion-icon>
+            The choice can contain alphanumeric characters, apostrophes, and dashes only.
+          </div>
+          <div class="error"
+            *ngIf="pollingForm.hasError('maxLength', 'choice2') && (pollingForm.controls.choice2.dirty || pollingForm.controls.choice2.touched)">
+            <ion-icon name="alert"></ion-icon>
+            Your choice cannot be longer than 20 characters.
+          </div>
+        </form>
+
+      </ion-list>
+      <ion-button color="tertiary" [disabled]="!pollingForm.valid" expand="full" (click)="savePoll()">Save</ion-button>
+    </div>
+  </ion-card>
+</ion-content>

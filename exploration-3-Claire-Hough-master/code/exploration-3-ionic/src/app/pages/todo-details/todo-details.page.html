@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-list lines="full">
+
+    <form [formGroup]="parkForm">
+      <ion-item>
+        <ion-label position="floating">Park</ion-label>
+        <ion-select formControlName="park">
+          <ion-select-option value="Magic Kingdom">Magic Kingdom</ion-select-option>
+          <ion-select-option value="Epcot">Epcot</ion-select-option>
+          <ion-select-option value="Hollywood Studios">Hollywood Studios</ion-select-option>
+          <ion-select-option value="Animal Kingdom">Animal Kingdom</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Attraction</ion-label>
+        <ion-input maxLength=40 formControlName="task" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Date and Time</ion-label>
+        <ion-datetime formControlName="time" displayFormat="D MMM YYYY H:mm" min="2019" max="2025"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Priority</ion-label>
+        <ion-select formControlName="priority">
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+          <ion-select-option value="4">4</ion-select-option>
+          <ion-select-option value="5">5</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+  <ion-button color="dark" [disabled]="!parkForm.valid" expand="full" (click)="saveTodo()">Save</ion-button>
+</ion-content>
+
+<!-- <ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list lines="full">
+
+    <ion-item>
+      <ion-label position="floating">Park</ion-label>
+      <ion-select required [(ngModel)]="todo.park">
+        <ion-select-option value="Magic Kingdom">Magic Kingdom</ion-select-option>
+        <ion-select-option value="Epcot">Epcot</ion-select-option>
+        <ion-select-option value="Hollywood Studios">Hollywood Studios</ion-select-option>
+        <ion-select-option value="Animal Kingdom">Animal Kingdom</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Attraction</ion-label>
+      <ion-input required maxlength=40 type="text" [(ngModel)]="todo.task"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Date and Time</ion-label>
+      <ion-datetime [(ngModel)]="todo.time" displayFormat="D MMM YYYY H:mm" min="2019" max="2025"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Priority</ion-label>
+      <ion-select required [(ngModel)]="todo.priority">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+  <ion-button color="dark" expand="full" (click)="saveTodo()">Save</ion-button>
+</ion-content> -->

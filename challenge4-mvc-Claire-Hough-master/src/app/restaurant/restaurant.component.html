@@ -1,0 +1,10 @@
+<h1>restaurant component</h1>
+
+<li *ngFor="let restaurant of restaurants">
+  <a [routerLink]="['/city', cityId, 'restaurant', restaurant.id, 'review']">
+    <div>Name: {{restaurant.name}}</div>
+    <div>Cuisine: {{restaurant.cuisine}}</div>
+    <div>Average rating: {{averageRatingPerRestaurant(restaurant.id)}}</div>
+    <div>Total reviews: {{totalReviewsPerRestaurant(restaurant.id)}}</div>
+  </a>
+</li>

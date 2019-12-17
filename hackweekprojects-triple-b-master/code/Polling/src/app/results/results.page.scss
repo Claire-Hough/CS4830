@@ -1,0 +1,37 @@
+ion-icon {
+  float: right;
+  min-height: 40px;
+  min-width: 40px;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+ion-title {
+  margin-top: 1%;
+}
+
+ion-content {
+  --ion-background-color: lightgrey;
+}
+
+ion-grid{
+  padding-bottom: 2%;
+ }
+
+ion-card {
+  background-color: white;
+}
+
+ion-item, ion-list {
+  --ion-background-color: white;
+}
+
+.allignment{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.resultCard{
+  padding: 20px;
+}

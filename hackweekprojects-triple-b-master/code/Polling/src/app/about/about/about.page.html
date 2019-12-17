@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>About</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item lines="inset" [routerLink]="['/home']">
+      <ion-label>
+        Home Page
+        <p>The home page displays all of the open polls which users can vote on.</p>
+        <p>Users can click on a poll they want to view.</p>
+        <p>Users are allowed to vote once per poll.</p>
+        <p>Users will have the option to end polls that they create, which will remove them from the Home page and
+          display the completed results on the Results page.</p>
+      </ion-label>
+      <ion-note slot="end" color="primary">
+        <ion-icon name="home"></ion-icon>
+      </ion-note>
+    </ion-item>
+
+    <ion-item lines="inset" [routerLink]="['/admin']">
+      <ion-label>
+        Create a New Poll
+        <p>Each user who is logged-in is allowed to submit polls for others to vote on.</p>
+        <p>Users need to provide the embedded URL from the YouTube video of their choice, the question they want users
+          to vote on, and two options that will appear on<br>the voting buttons.</p>
+      </ion-label>
+      <ion-note slot="end" color="primary">
+        <ion-icon name="add"></ion-icon>
+      </ion-note>
+    </ion-item>
+
+    <ion-item lines="inset" [routerLink]="['/results']">
+      <ion-label>
+        Poll Results Page
+        <p>Results from closed polls are displayed on this page.</p>
+        <p>Poll results are displayed here when users close the polls they've created.</p>
+      </ion-label>
+      <ion-note slot="end" color="primary">
+        <ion-icon name="pulse"></ion-icon>
+      </ion-note>
+    </ion-item>
+
+    <ion-item lines="inset" [routerLink]="['/modal']">
+      <ion-label>
+        Login Page
+        <p>Users can login using their Google account, or another email.</p>
+        <p>Only logged in users can create and vote on polls.</p>
+      </ion-label>
+      <ion-note slot="end" color="primary">
+        <ion-icon name="contact"></ion-icon>
+      </ion-note>
+    </ion-item>
+
+    <ion-item lines="inset">
+      <ion-label>
+        About Us
+        <p>This app was made by Brad Schinker, Brock Weekley, and Claire Hough as our final project for CS4830 - Web
+          Application Development II at the Unviersity of Missouri, Columbia.</p>
+        <p>People often form strong opinions that are reinforced when they associate with like-minded individuals. We
+          wanted to shine light on differing opinions by allowing people to see the<br> true majority opinion on certain
+          topics as well as give people the opportunity to see what they have in common.</p>
+        <p>Our goal was to create a polling app where users can upload YouTube videos that they
+          would like to know others’ opinions on, and vote on whether they agree or disagree with the<br> question being
+          asked. This way, users can clearly and easily see which opinion is the majority.
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

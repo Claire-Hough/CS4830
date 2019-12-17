@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <a routerLink="/modal">
+      <ion-icon name="contact" color="tertiary"></ion-icon>
+    </a>
+    <ion-title>
+      Live Polling App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="selectedPoll">
+
+    <ion-grid>
+      <ion-row>
+
+        <ion-col size="12" size-sm>
+          <div>
+            <iframe [src]="this.safeUrl" frameborder="0" allow="accelerometer; autoplay;" allowfullscreen=""></iframe>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-sm>
+
+          <div>
+            <canvas baseChart [datasets]="[
+              { barPercentage: 0.65, data: [first], label: [choice1] }, 
+              { barPercentage: 0.65, data: [second], label: [choice2] }
+              ]" [labels]="[ question ]" [options]="barChartOptions" [plugins]="barChartPlugins"
+              [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+          </div>
+
+          <ion-item>
+            <div class="items">
+              <ion-button [disabled]="disabled && this.results[0].completed === true" (click)="option1()">{{ choice1 }}</ion-button>
+              <span>{{ question }}</span>
+              <ion-button [disabled]="disabled && this.results[0].completed === true" class="float" (click)="option2()">{{ choice2 }}</ion-button>
+            </div>
+          </ion-item>
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+    <ion-button (click)="this.selectedPoll = ''">
+      <ion-icon name="arrow-back"></ion-icon> Choose a different poll
+    </ion-button>
+    <ion-button *ngIf="creator !== '' && user.email === creator" [disabled]="this.results[0].completed === true"
+    (click)="setFinished(this.results[0].pollID)">
+      Finish Poll
+    </ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="!selectedPoll">
+
+    <ion-item>
+      <h3>Active Polls</h3>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let poll of polls; let count = index" (click)="pollSelected(poll)" size="12" size-sm="6"
+          size-md="4" size-lg="4" size-xl="3">
+          <ion-card class="room">
+            <ion-item class="title">
+              <ion-icon name="analytics" slot="end"></ion-icon>
+
+              <ion-label color="primary">
+                Poll {{count + 1}}: {{ videos[count].items[0].snippet.title }}
+              </ion-label>
+            </ion-item>
+            
+            <ion-item>
+              <img [src]="videos[count].items[0].snippet.thumbnails.medium.url">
+            </ion-item>
+            <ion-card-content>
+
+              <ng-container *ngIf="videos[count].items[0].snippet.liveBroadcastContent === 'live'">
+                <ion-text color="danger">Live Video</ion-text>
+                <br>
+              </ng-container>
+
+              <strong>Question asked in poll: {{ poll.question }}</strong>
+         
+            </ion-card-content>
+            <br><br>
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>

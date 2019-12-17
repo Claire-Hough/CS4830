@@ -1,0 +1,180 @@
+<ion-header>
+  <ion-toolbar>
+    <a class="float" routerLink="/about">
+      <ion-icon class="about" color="tertiary" name="information-circle"></ion-icon>
+    </a>
+    <ion-title>Welcome, <strong>{{ user.displayName }}</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!toLogin">
+    <ion-img [src]=[user.photoURL]></ion-img>
+    <ion-card-title><strong>Profile Settings:</strong></ion-card-title>
+    <ion-item>Choose your favorite color: <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+    </ion-item>
+    <span class="colors">
+      <div class="blue divColor" (click)="color('blue')"></div>
+      <div class="yellow divColor" (click)="color('yellow')"></div>
+      <div class="purple divColor" (click)="color('tertiary')"></div>
+      <div class="red divColor" (click)="color('red')"></div>
+      <div class="black divColor" (click)="color('black')"></div>
+      <div class="pink divColor" (click)="color('pink')"></div>
+      <div class="green divColor" (click)="color('green')"></div>
+      <div class="white divColor" (click)="color('white')"></div>
+    </span>
+    <ion-button color="black" [disabled]="user.displayName !== 'Guest'" (click)="toLogin = true">Login</ion-button>
+
+    <ion-button class="float" (click)="logout()">Logout</ion-button>
+  </ion-card>
+  <ion-card class="login" *ngIf="toLogin && !toEmail">
+    <ion-card-title>Login through:</ion-card-title>
+    <ion-button class="butn" (click)="google()">
+      <ion-icon class="buttonIcon" name="logo-google"></ion-icon>Google
+    </ion-button>
+    <ion-button class="butn" (click)="toEmail = true">
+      <ion-icon class="buttonIcon" name="mail"></ion-icon>Email
+    </ion-button>
+    <ion-button class="butn anon" (click)="anon()">
+      <ion-icon class="buttonIcon" name="person"></ion-icon>Anonymously
+    </ion-button>
+    <ion-card-title>Sign up with:</ion-card-title>
+    <ion-button class="butn" (click)="email()">
+      <ion-icon class="buttonIcon" name="mail"></ion-icon>Email
+    </ion-button>
+    <hr />
+    <ion-button class="butn cancel" (click)="toLogin = false">Cancel</ion-button>
+  </ion-card>
+  <ion-card class="loginEmail" *ngIf="toLogin && toEmail">
+
+    <form *ngIf="!signUp" [formGroup]="userForm">
+      <ion-item>
+        <ion-label position="floating">Email:</ion-label>
+        <ion-input maxLength=64 formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <div class="errorMessage divError"
+        *ngIf="userForm.hasError('required', 'email') && (userForm.controls.email.touched || userForm.controls.email.dirty)">
+        You must enter a valid email address.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="userForm.hasError('pattern', 'email') && (userForm.controls.email.touched || userForm.controls.email.dirty)">
+        This email address is not valid.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div lines="none" class="errorMessage divError"
+        *ngIf="userForm.hasError('maxLength', 'email') && (userForm.controls.email.touched || userForm.controls.email.dirty)">
+        Email must be less than 64 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Password:</ion-label>
+        <ion-input minlength=8 maxlength=50 formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <div class="errorMessage divError"
+        *ngIf="userForm.hasError('required', 'password') && (userForm.controls.password.touched || userForm.controls.password.dirty)">
+        You must enter a password.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('minLength', 'password') && (signUpForm.controls.password.touched || signUpForm.controls.password.dirty)">
+        Password must be at least 8 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="userForm.hasError('maxLength', 'password') && (userForm.controls.password.touched || userForm.controls.password.dirty)">
+        Password must be less than 50 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+
+    </form>
+    <form *ngIf="signUp" [formGroup]="signUpForm">
+      <ion-item>
+        <ion-label position="floating">Display Name:</ion-label>
+        <ion-input maxLength=50 formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('required', 'name') && (signUpForm.controls.name.touched || signUpForm.controls.name.dirty)">
+        You must enter a display name.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('pattern', 'name') && (signUpForm.controls.name.touched || signUpForm.controls.name.dirty)">
+        Display name can only contain letters and numbers.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('maxLength', 'name') && (signUpForm.controls.name.touched || signUpForm.controls.name.dirty)">
+        Name must be less than 50 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Email:</ion-label>
+        <ion-input maxLength=64 formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('required', 'email') && (signUpForm.controls.email.touched || signUpForm.controls.email.dirty)">
+        You must enter an email.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('pattern', 'email') && (signUpForm.controls.email.touched || signUpForm.controls.email.dirty)">
+        The email address is not valid.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('maxLength', 'email') && (signUpForm.controls.email.touched || signUpForm.controls.email.dirty)">
+        Email must be less than 64 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Password:</ion-label>
+        <ion-input [(ngModel)]="pass" maxLength=50 formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('required', 'password') && (signUpForm.controls.password.touched || signUpForm.controls.password.dirty)">
+        You must enter a password.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('maxLength', 'password') && (signUpForm.controls.password.touched || signUpForm.controls.password.dirty)">
+        Password must be less than 50 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('minLength', 'password') && (signUpForm.controls.password.touched || signUpForm.controls.password.dirty)">
+        Password must be at least 8 characters.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Confirm Password:</ion-label>
+        <ion-input (input)="match($event.target.value)" [(ngModel)]="conf" maxLength=50 formControlName="confirm"
+          type="password"></ion-input>
+      </ion-item>
+      <div class="errorMessage divError"
+        *ngIf="signUpForm.hasError('required', 'confirm') && (signUpForm.controls.confirm.touched || signUpForm.controls.confirm.dirty)">
+        You must confirm your password.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+      <div class="errorMessage divError"
+        *ngIf="!passwordsMatch && (signUpForm.controls.confirm.touched || signUpForm.controls.confirm.dirty)">
+        Passwords must match.
+        <ion-icon name="alert" class="errorMessage"></ion-icon>
+      </div>
+
+    </form>
+    <div></div>
+    <div class="tns">
+      <button class="error">{{ message }}</button>
+      <ion-button *ngIf="!signUp" class="butn" color="dark" [disabled]="!userForm.valid" (click)="sendCredentials()">
+        Login</ion-button>
+      <ion-button *ngIf="signUp" class="butn" color="dark" [disabled]="!signUpForm.valid" (click)="sendCredentials()">
+        Sign up</ion-button>
+      <ion-button class="butn cancel" (click)="cancel()">Cancel</ion-button>
+    </div>
+  </ion-card>
+
+</ion-content>

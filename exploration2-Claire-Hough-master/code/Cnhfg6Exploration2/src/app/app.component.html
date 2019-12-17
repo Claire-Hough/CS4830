@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cnhfg6 Exploration 2</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- bootstrap css, necessary -->
+        <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- bootstrap theme, optional --> 
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
+    </head>
+    <body>
+
+      <!-- tutorial I followed: https://www.youtube.com/watch?v=6AX-fhx59Hg -->
+
+      <div class='container-fluid'>
+        <div>
+          <h1>{{title}}</h1>
+          <h3>{{description}}</h3>
+        </div>
+
+        <div>
+          <form>
+            <div class="form-group">
+              <label for="attraction">Attraction: </label>
+              <input type="text" class="form-control" placeholder="Enter attraction..." id="attraction" required [(ngModel)]="attractionValue" name="attraction">
+              <br>
+              <label for="location">Location: </label>
+              <input type="text" class="form-control" placeholder="Enter location..." id="location" required [(ngModel)]="locationValue" name="location">
+            </div>
+
+            <button (click)="onSubmit()">Submit</button>
+          </form>
+        </div>
+
+        <h2>Content from Firebase</h2>
+        <div class="output">
+          <pre *ngFor="let magicKingdom of MagicKingdom | async">
+            Attraction: {{magicKingdom.attraction}}
+            Location: {{magicKingdom.location}}
+          </pre>
+        </div>
+        <button (click)="onDelete()">Clear List</button>
+      </div>
+    </body>
+</html>
